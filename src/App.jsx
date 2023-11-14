@@ -12,12 +12,19 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const newPerson = {
       name: newName,
     };
-    setPersons(persons.concat(newPerson));
+
+    const namesMatch = persons.some((person) => person.name === newName);
+
+    namesMatch
+      ? alert(`${newName} is already added to the phonebook`)
+      : setPersons(persons.concat(newPerson));
+
     setNewName("");
-    console.log(persons);
+    event.target.reset();
   };
 
   return (
